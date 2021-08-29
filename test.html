@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="p"></ul>
+    <script>
+      // var user = {
+      //   name: 'monica',
+      //   age: 17,
+      // };
+      // var str = `my name is ${user.name}, my age is ${user.age}`;
+      // console.log(str);
+      var ul = document.getElementById('p');
+      async function test() {
+        var resp = await fetch('https://study.duyiedu.com/api/citylist').then(
+          function (resp) {
+            return resp.json();
+          }
+        );
+        var provinces = resp.data;
+        var html = provinces.map(function (item) {
+          return `<li>${item.label}</li>`;
+        });
+        html = html.join('');
+        ul.innerHTML = html;
+      }
+
+      test();
+    </script>
+  </body>
+</html>
